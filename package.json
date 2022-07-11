@@ -1,0 +1,20 @@
+{
+  "name": "major_project-2",
+  "version": "1.0.0",
+  "description": "social media site",
+  "main": "index.js",
+  "scripts": {
+    "start":"nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "media"
+  ],
+  "author": "divya",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.4.4",
+    "nodemon": "^2.0.19"
+  }
+}
