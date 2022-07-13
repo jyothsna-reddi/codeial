@@ -3,9 +3,10 @@ const path = require("path");
 const port = 8000;
 const db = require("./config/mongoose");
 const expressLayouts = require("express-ejs-layouts");
-
+const cookieParser = require("cookie-parser");
 const app = express();
 app.use(express.static('./assets'));
+app.use(cookieParser);
 app.use(expressLayouts);//this  is for layouts...place before route
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
