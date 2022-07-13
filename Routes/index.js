@@ -10,3 +10,4 @@ router.use('/users',require("./users"));
 router.use("/posts",require("./posts"));
 //available to index.js
 module.exports = router;
+
