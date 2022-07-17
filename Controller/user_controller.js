@@ -1,3 +1,4 @@
+const User = require()
 module.exports.users = function(req,res){
     return res.render("users");
 }
@@ -7,7 +8,7 @@ module.exports.profile  = function(req,res){
 module.exports.signup = function(req,res){
     return res.render("Signup");
 }
-module.exports.login = function(req,res){
+module.exports.signin = function(req,res){
     return res.render("Login");
 }
 module.exports.createUser = function(req,res){
@@ -17,9 +18,6 @@ module.exports.createUser = function(req,res){
     return res.redirect("/");
 }
 module.exports.createSession = function(req,res){
-    //    Todo later
-       
-       
         return res.redirect("/");
     }
 
