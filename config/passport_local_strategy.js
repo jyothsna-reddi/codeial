@@ -20,14 +20,41 @@ passport.use(new LocalStrategy({
                 return done(null,false);
              }
              else{
-                return done(null,true);
+                return done(null,user);
              }
         })
     }
 ))
-console.log("called");
+// passport.checkauthentication=function(req,res,next){
+//     if(req.isAuthenticated()){
+//         console.log("reqqq",req.isAuthenticated);
+//         return next();
+//     }
+//     return res.redirect('/user/signin');
+// }
+// passport.setauthenticatedUser=function(req,res,next){
+//     if(req.isAuthenticated()){
+//         res.locals.user=req.user;
+//     }
+//     next();
+// }
+passport.checkauthentication =(function(req,res,next){
+    if(req.isAuthenticated()){
+      //  console.log("bhgh",req);
+        return next();
+    }
+    return res.redirect('/users/sign-in');
+})
+passport.setAuthenticatedUser = (function(req,res,next){
+    
+    if(req.isAuthenticated()){
+        res.locals.user = req.user;
+    }
+    next();
+})
 //serialize user 
 passport.serializeUser(function(user,done){
+    console.log(user,user.id);
     done(null,user.id);
 });
 passport.deserializeUser(function(id,done){
@@ -42,4 +69,5 @@ passport.deserializeUser(function(id,done){
         return done(null,false);
     })
 })
+
 module.exports = passport;

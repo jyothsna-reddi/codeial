@@ -1,3 +1,36 @@
+
 <header>
-    Posts header
+    <div class="nav-bar">
+        <ul>
+            <li class="float-left">
+
+            </li>
+            <li class="float-left a-img">
+                <a  href="/"><img src="https://media.istockphoto.com/vectors/white-and-black-handshake-line-icon-concept-business-partners-sign-vector-id1277253703?b=1&k=20&m=1277253703&s=170x170&h=T5gH0nKHZGnomkSorlXdEGDsl09VH-dEAHHZrOvyiu4="></a>
+            </li>
+            <li class="float-left">
+                <a  href="/">Codeial</a>
+            </li>
+           <% if(locals.user) { %>
+            <li>
+                <a class="sign-profile" href="/users/sign-out " >Sign out</a>
+            </li>
+            <li>
+                <a class="sign-profile" href = "/users/profile"> <%= user.name %></a>
+            </li>
+            <li>
+                <a class="icon" href="#"><i class='far fa-bell' style='font-size:20px'></i></a>
+            </li>
+            
+            
+          <% } else { %>
+            <li>
+                <a class="sign-profile"  href="/users/sign-in " >Sign in</a>
+            </li>
+            <li>
+                <a class="sign-profile"  href="/users/sign-up " >Sign up</a>
+            </li>
+          <% } %>
+        </ul>
+    </div>
 </header>

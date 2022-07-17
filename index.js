@@ -5,11 +5,28 @@ const app = express();
 const port = 8000;
 const expressLayouts = require("express-ejs-layouts");
 const db = require("./config/mongoose");
+const MongoStore = require("connect-mongo");
+//SASS and SCSS
+const scssMiddleware = require("node-sass-middleware");
 // used for session cookie
 const session = require('express-session');
 const passport = require('passport');
 const passportlocal = require("./config/passport_local_strategy");
-
+//SCSS Setup
+app.use(scssMiddleware ({
+    src : "./Assets/scss",
+    dest : "./Assets/css",
+    debug : true,
+    prefix :"/css",
+    outputStyle : "expanded",
+}))
+// app.use(sass.middleware({
+//     src : './assets/scss',
+//     file : './assets/css',
+//     debug : true,
+//     outputStyle : 'extended',
+//     prefix : '/css'
+// }))
 app.use(express.urlencoded());
 
 app.use(cookieParser());
@@ -22,10 +39,6 @@ app.use(expressLayouts);//this  is for layouts...place before route
 //use layouts before routes
 app.set('layout extractStyles', true);
 app.set('layout extractScripts', true);
-
-
-//view engine setup
-app.use('/',require("./Routes/index"));
 
 // set up the view engine
 app.set("view engine","ejs");
@@ -40,16 +53,25 @@ app.use(session({
     resave: false,
     cookie: {
         maxAge: (1000 * 60 * 100)
-    }
+    },
+    store: MongoStore.create({
+        //options)
+    // store : new MongoStore({
+       mongoUrl : "mongodb://0.0.0.0:27017/social_media",
+        autoremove : "disabled",
+    },function(err){
+        console.log("error at mongo store",err || "connection established to store cookie");
+    })
 }));
 //passport initialize 
 app.use(passport.initialize());
 //passport to link session
 app.use(passport.session());
+app.use(passport.setAuthenticatedUser)
 
 
 //use express router 
-
+app.use('/',require("./Routes/index"));
 
 app.listen(port,function(err){
     if(err){

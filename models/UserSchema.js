@@ -7,7 +7,7 @@ const user = mongoose.Schema({
         unique : true,
 
     },
-    phone :{
+    password :{
         type : String,
         require : true,
         

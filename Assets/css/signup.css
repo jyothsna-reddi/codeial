@@ -1,35 +1,38 @@
-body{
-    margin: 0px;
-    background-color: rgb(8, 102, 185);
+body {
+  margin: 0px;
+  background-color: #0866b9;
 }
-.form{
+
+.form {
   font-size: 15px;
-  color: lightslategray;  
+  color: lightslategray;
   width: 40%;
   margin: auto;
   margin-top: 20px;
 }
-form input {
-    display: block;
-    height: 40px;
-    width:80%;
-    margin: 20px;
-    border-radius: 5px;
-    border: 0px;
 
+form input {
+  display: block;
+  height: 40px;
+  width: 80%;
+  margin: 20px;
+  border-radius: 5px;
+  border: 0px;
 }
-h1{
-    text-align: center;
-    color: white;
+
+h1 {
+  text-align: center;
+  color: white;
 }
+
 button {
-    color: white;
-    background-color: blue;
-    padding: 10px;
-    margin: auto;
-    font-size: 15px;
-    font-weight: 600;
-    border: 0px;
-    border-radius: 4px;
-    margin-left: 40%;
+  color: white;
+  background-color: blue;
+  padding: 10px;
+  margin: auto;
+  font-size: 15px;
+  font-weight: 600;
+  border: 0px;
+  border-radius: 4px;
+  margin-left: 40%;
 }

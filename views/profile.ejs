@@ -1,0 +1,13 @@
+<head>
+    <link rel="stylesheet" href="/css/signup.css">
+</head>
+<h1>
+     Profile Page 
+</h1>
+<div class="form">
+    <form action="/users/update" method="post">
+        <input type="text" name = "name" value=<%= user.name %> >
+        <input type="text" name = "email" value=<%= user.email %> >
+        <button type="submit">Update Details</button>
+    </form>
+</div>
