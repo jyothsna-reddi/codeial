@@ -4,14 +4,14 @@ module.exports.users = function(req,res){
 }
 module.exports.profile  = function(req,res){
     return res.render("profile", {
-        title : "Codeial | Profile",
+        title : "Profile",
     })
 }
 module.exports.signup = function(req,res){
-    return res.render("Signup");
+    return res.render("Signup",{title : "Sign-up"});
 }
 module.exports.signin = function(req,res){
-    return res.render("Login");
+    return res.render("Login",{title : "Sign-in"});
 }
 module.exports.createUser = function(req,res){
     if(req.body.password != req.body.confirm_password){
