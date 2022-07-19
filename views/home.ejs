@@ -1,10 +1,25 @@
 <html>
     <head>
-        <title>COdeial</title>
+        <title>Codeial</title>
     </head>
     <body>
 
-        <h1>Home page is up and running using ejs !!!</h1>
+        <div>
+            <form action="/posts/create-post" method="post">
+                    <textarea placeholder="What's on your mind.." col="30" rows="3" name="postContent" class="posts-textarea"></textarea>
+                    <button type="submit">Post</button>
+            </form>
+         </div>
+         <div>
+            <% for(post of posts) { %>
+                    <div>
+                           <%= post.postContent %>
+                    </div>
+                    <div>
+                            <%= post.user %>
+                    </div>
+            <% } %>
+         </div>
        
     </body>
 </html>
