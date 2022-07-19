@@ -9,5 +9,5 @@ const mongoose = require("mongoose");
         required : true
     },
  },{timestamps : true});
- const Posts = mongoose.model("posts",Postschema);
+ const Posts = mongoose.model("Posts",Postschema);
  module.exports = Posts;

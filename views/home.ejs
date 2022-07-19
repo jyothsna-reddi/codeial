@@ -1,10 +1,11 @@
 <html>
     <head>
-        <title>Codeial</title>
+        <title>Codeial || <%=title %></title>
     </head>
     <body>
 
         <div>
+            <h1> <%= title %></h1>
             <form action="/posts/create-post" method="post">
                     <textarea placeholder="What's on your mind.." col="30" rows="3" name="postContent" class="posts-textarea"></textarea>
                     <button type="submit">Post</button>
@@ -16,7 +17,10 @@
                            <%= post.postContent %>
                     </div>
                     <div>
-                            <%= post.user %>
+                            <%= post.user.name %>
+                    </div>
+                    <div>
+                        <%= post.user.createdAt %>
                     </div>
             <% } %>
          </div>
