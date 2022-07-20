@@ -1,14 +1,26 @@
 const Commment = require("../models/commentSchema");
+const Post = require("../models/PostSchema");
 
 module.exports.createcomment  = function(req,res){
-    Commment.create({
-        commentcontent: req.body.commentcontent,
-        user: req.user._id,
-    },function(err,comment){
+   Post.findById(req.body.post,function(err,post){
         if(err){
-            console.log("error in posting comments to db");
-            return;
+            console.log(err);
         }
-        return res.redirect("/");  
-    })
+        Commment.create({
+            commentcontent: req.body.commentcontent,
+            post : req.body.post,
+            user: req.user._id,
+        },function(err,comment){
+            if(err){
+                console.log("error in posting comments to db");
+                return;
+            }
+
+
+            post.comments.push(comment);
+            post.save();
+            return res.redirect("/");  
+        })
+        
+   })
 }
