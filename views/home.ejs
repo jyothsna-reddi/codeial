@@ -35,7 +35,14 @@
                         <% } %>
                     </div>
                     <div class="display-comments">
-                       <%= %>
+                       <% for( comment of post.comments){ %>
+                            <div>
+                                <%= comment.commentcontent %>
+                            </div>
+                            <div>
+                                <%= comment.user.name %>
+                            </div>
+                        <% } %>
                     </div>
             <% } %>
          </div>

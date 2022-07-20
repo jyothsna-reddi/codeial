@@ -1,22 +1,21 @@
-// const home = require("/home.ejs")
-
-
-
-
 //This is like app.get and app.post acllback function....
+
 const Post = require("../models/PostSchema");
+const Comment = require("../models/commentSchema")
+const User = require("../models/UserSchema")
 module.exports.home = function(req,res){
-    Post.find({}).populate("user").exec(function(err,post){
-        if(err){
-            console.log("cannot fetch posts",err);
-            return;
+    Post.find({})
+    .populate('user')
+    .populate({
+        path: 'comments',
+        populate: {
+            path: 'user'
         }
-        else{
-            console.log(post);
-            return res.render("home", {
-                title : "home",
-                posts : post,
-            })
-        }
-    });
+    })
+    .exec(function(err, posts){
+        return res.render('home', {
+            title: "Codeial | Home",
+            posts:  posts
+        });
+    })
 }
