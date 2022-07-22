@@ -1,11 +1,41 @@
+const Post = require("../models/PostSchema");
 const User = require("../models/UserSchema")
 module.exports.users = function(req,res){
     return res.render("users");
 }
-module.exports.profile  = function(req,res){
-    return res.render("profile", {
-        title : "Profile",
-    })
+module.exports.profile  = async function(req,res){
+    //async and await
+    try {
+        let user = await User.findById(req.params.id);
+        let post = await Post.find({user : req.params.id});
+        return res.render("profile", {
+            title : "Profile",
+            profile_user : user,
+            posts : post,
+        })    
+    }catch(err){
+        console.log(err);
+        return res.redirect("/");
+    }
+    // User.findById(req.params.id,function(err,user){
+    // Post.find({user : req.params.id},function(err,post){
+    //     return res.render("profile", {
+    //         title : "Profile",
+    //         profile_user : user,
+    //         posts : post,
+    //     })
+    // })
+    // })  
+}
+module.exports.update = function(req,res){
+    if(req.user.id == req.params.id) {
+        User.findByIdAndUpdate(req.params.id,{
+            name : req.body.name,
+            email : req.body.email,
+        },function(err,user){
+            return res.redirect("back");
+        })
+    }
 }
 module.exports.signup = function(req,res){
     return res.render("Signup",{title : "Sign-up"});

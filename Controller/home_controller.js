@@ -3,8 +3,9 @@
 const Post = require("../models/PostSchema");
 const Comment = require("../models/commentSchema")
 const User = require("../models/UserSchema")
-module.exports.home = function(req,res){
-    Post.find({})
+module.exports.home = async function(req,res){
+    try{
+        let posts = await Post.find({})
     .populate('user')
     .populate({
         path: 'comments',
@@ -12,10 +13,15 @@ module.exports.home = function(req,res){
             path: 'user'
         }
     })
-    .exec(function(err, posts){
-        return res.render('home', {
-            title: "Codeial | Home",
-            posts:  posts
-        });
-    })
+    let user =  await User.find({});
+    return res.render('home', {
+        title: "Codeial | Home",
+        posts:  posts,
+        allusers : user,
+    });
+    }
+    catch(err){
+        console.log(err);
+        return;
+    }
 }

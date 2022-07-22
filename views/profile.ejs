@@ -4,10 +4,28 @@
 <h1>
      Profile Page 
 </h1>
-<div class="form">
-    <form action="/users/update" method="post">
-        <input type="text" name = "name" value=<%= user.name %> >
-        <input type="text" name = "email" value=<%= user.email %> >
-        <button type="submit">Update Details</button>
-    </form>
+<% if(locals.user && (locals.user.id == profile_user.id)) { %>  
+    <div class="form">
+        <form action="/users/update/<%=profile_user.id %>" method="post">
+            <input type="text" name = "name" value=<%= profile_user.name %> >
+            <input type="text" name = "email" value=<%= profile_user.email %> >
+            <button type="submit">Update Details</button>
+        </form>
+    </div>
+<% } else { %>
+    <div class="user-profile">
+        <div>
+            <h3> User Name :-<%= profile_user.name %> </h3>
+        </div>
+        <div>
+            <h3> Email :- <%= profile_user.email %> </h3>
+         </div>
+    </div>
+<% } %>
+<div>
+    <% for(post of posts) { %>
+        <div>
+            <%= post.postContent %>
+        </div>
+    <% } %>
 </div>

@@ -1,6 +1,8 @@
+
 <html>
     <head>
         <title>Codeial || <%=title %></title>
+        <link rel="stylesheet" href="/css/home.css"></link>
     </head>
     <body>
 
@@ -16,41 +18,21 @@
          </div>
          <div>
             <% for(post of posts) { %>
-                    <div>
-                           <%= post.postContent %>
-                    </div>
-                    <div>
-                            <%= post.user.name %>
-                    </div>
-                    <div>
-                        <%= post.user.createdAt %>
-                    </div>
-                    <% if(locals.user && post.user.name == user.name)  {%>
-                    <div class="delte-post">
-                        <a href="/posts/destroy/<%=post._id%>">Delete Post</a>
-                    </div>
-                    <% } %>
-                    <div class="add-comment">
-                        <% if(locals.user)  {%>
-                            <form action="/comments/create-comment" method="POST">
-                                <input type="text" name="commentcontent" placeholder="Add your thoughts...">
-                                <input type="hidden" name="post" value=<%= post._id %> >
-                                <button type="submit">Add Comment</button>
-                            </form>
-                        <% } %>
-                    </div>
-                    <div class="display-comments">
-                       <% for( comment of post.comments){ %>
-                            <div>
-                                <%= comment.commentcontent %>
-                            </div>
-                            <div>
-                                <%= comment.user.name %>
-                            </div>
-                        <% } %>
-                    </div>
+                <%- include("_post")%>
             <% } %>
          </div>
-       
+         <div class="List_of_users">
+            <h1>USER DETAILS </h1>
+            <% for(user of allusers) { %>
+                <div>
+                  
+                   <a href="/users/profile/<%=user.id%>"><%=  user.name %> </a>
+                </div>
+                <div>
+                  <a href="#">Follow</a>
+                </div>
+                
+            <% } %>
+         </div>
     </body>
-</html>
+</html> 
