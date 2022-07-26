@@ -11,6 +11,7 @@ module.exports.createcomment  = async function(req,res){
         })
     post.comments.push(comment);
     post.save();
+    req.flash("success","Added comment successfully");
     return res.redirect("/");  
    }
    catch(err){
@@ -53,6 +54,7 @@ module.exports.destroy = async function(req,res){
             else{
                 return res.redirect("back");  ;
             }
+            req.flash("success","Delete comment successfully");
             return res.redirect("back");  
     }
     catch(err){

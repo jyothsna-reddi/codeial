@@ -43,36 +43,26 @@ module.exports.signup = function(req,res){
 module.exports.signin = function(req,res){
     return res.render("Login",{title : "Sign-in"});
 }
-module.exports.createUser = function(req,res){
+module.exports.createUser = async function(req,res){
     if(req.body.password != req.body.confirm_password){
         console.log("password mismatch");
+        req.flash("error","Password is not matching");
         return res.redirect("back");
     }
-    User.findOne({email:req.body.email},function(err,user){
-        if(err){
+    let user = await User.findOne({email:req.body.email});
+        if(user){
             console.log("Cannot create the user");
-            return;
-        
-        }
-        if(!user){
-            User.create(req.body,function(err,user){
-                if(err){
-                    console.log('error in creating user while signing up');
-                    return;
-                };
-                return res.redirect('/users/sign-in');
-            });
-        } 
-        else{
+            req.flash("error","Already user exists");
             return res.redirect("back");
         }
-    })
-   
-   
-   
-    return res.redirect("/");
+        else if(!user){
+            let user_create = User.create(req.body);
+            req.flash("success","successfully signed up !!");
+            return res.redirect('/users/sign-in');
+        } 
 }
 module.exports.createSession = function(req,res){
+    req.flash("success","Logged in successfully");
         return res.redirect("/");
 }
 module.exports.destroysession = function(req,res){
@@ -80,6 +70,8 @@ module.exports.destroysession = function(req,res){
         if(err){
             return;
         }
+        req.flash("success","Logged out successfully");
+        //as we have defined flash in req need to add it in res (middleware - config)
         return res.redirect('/');
     });
     

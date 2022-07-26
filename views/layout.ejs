@@ -1,10 +1,12 @@
 <html>
     <head>
         <title>Codeial || <%= title %></title>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" rel="stylesheet">
         <link rel="stylesheet" href="/css/Layout.css">
         <link rel="stylesheet" href="/css/header.css">
         <link rel="stylesheet" href="/css/footer.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" type="text/javascript"></script>
         <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
         <%- style %>
     </head>
@@ -13,8 +15,29 @@
        <main id="main-body">
         <%- body %>
        </main>
+       
         <%- include('_footer') %>
         <script src="/js/Layout.js"></script>
         <%- script %>
     </body>
+    <script>
+         <% if(flash.success && flash.success.length>0){ %>
+            new Noty({
+                    theme : "relax",
+                    text: "<%= flash.success %>",
+                    type: "success",
+                    layout : "topRight",
+                    timeout:1500
+                }).show();
+         <% } %>
+         <% if(flash.error && flash.error.length){ %>
+            new Noty({
+                    theme : "relax",
+                    text: "<%= flash.error %>",
+                    type: "error",
+                    layout : "topRight",
+                    timeout:1500
+                }).show();
+        <% } %>
+    </script>
 </html>

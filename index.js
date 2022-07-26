@@ -12,6 +12,11 @@ const scssMiddleware = require("node-sass-middleware");
 const session = require('express-session');
 const passport = require('passport');
 const passportlocal = require("./config/passport_local_strategy");
+//added flash for notifications
+const flash = require("connect-flash");
+//call custom middleare - flash
+const custommiddleware = require("./config/middleware");
+
 //SCSS Setup
 app.use(scssMiddleware ({
     src : "./Assets/scss",
@@ -20,13 +25,7 @@ app.use(scssMiddleware ({
     prefix :"/css",
     outputStyle : "expanded",
 }))
-// app.use(sass.middleware({
-//     src : './assets/scss',
-//     file : './assets/css',
-//     debug : true,
-//     outputStyle : 'extended',
-//     prefix : '/css'
-// }))
+
 app.use(express.urlencoded());
 
 app.use(cookieParser());
@@ -69,7 +68,11 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(passport.setAuthenticatedUser)
 
-
+//use flash after session
+app.use(flash());
+//call middleware to set flash
+app.use(custommiddleware.setflash);
+//add it in layouts
 //use express router 
 app.use('/',require("./Routes/index"));
 

@@ -14,6 +14,7 @@ module.exports.createpost = function (req, res) {
                 console.log("error in posting posts to db");
                 return;
             }
+            req.flash("success","Added post successfully");
             return res.redirect("/");
         })
 }
@@ -24,6 +25,7 @@ module.exports.destroy =  async function (req, res) {
     if (post.user == req.user.id) {
         post.remove();
         await Comment.deleteMany({ post: req.params.id }) 
+        req.flash("success","Deleted post successfully");
         return res.redirect("/");
     }
    }catch(err){
