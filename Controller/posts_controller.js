@@ -4,19 +4,27 @@ const Comment = require("../models/commentSchema")
 const mongoose = require("mongoose");
 
 
-module.exports.createpost = function (req, res) {
-    Post.create({
+module.exports.createpost = async function (req, res) {
+    let post = await Post.create({
         postContent: req.body.postContent,
         user: req.user._id,
-    },
-        function (err, post) {
-            if (err) {
-                console.log("error in posting posts to db");
-                return;
-            }
-            req.flash("success","Added post successfully");
-            return res.redirect("/");
+    });
+    if(req.xhr){
+        return res.status(200).json({
+            data :{
+                post : post 
+            },
+            message : "Posted successfully"
         })
+    }
+        // function (err, post) {
+        //     if (err) {
+        //         console.log("error in posting posts to db");
+        //         return;
+        //     }
+        //     req.flash("success","Added post successfully");
+        //     return res.redirect("/");
+        // })
 }
 module.exports.destroy =  async function (req, res) {
      //async and await
