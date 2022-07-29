@@ -1,4 +1,4 @@
-
+const User =require("../models/UserSchema");
 const Post = require("../models/PostSchema");
 const Comment = require("../models/commentSchema")
 const mongoose = require("mongoose");
@@ -9,10 +9,22 @@ module.exports.createpost = async function (req, res) {
         postContent: req.body.postContent,
         user: req.user._id,
     });
+    // let posts = await Post.find({})
+    // .sort("-createdAt")
+    // .populate('user')
+    // .populate({
+    //     path: 'comments',
+    //     populate: {
+    //         path: 'user'
+    //     }
+// })
+  let posts = await Post.findById(post._id).populate("user","name email");
+ // console.log("ghg",users);
     if(req.xhr){
         return res.status(200).json({
             data :{
-                post : post 
+                post : posts,
+          //      user : user,
             },
             message : "Posted successfully"
         })
@@ -29,10 +41,21 @@ module.exports.createpost = async function (req, res) {
 module.exports.destroy =  async function (req, res) {
      //async and await
    try{
+    
     let post = await Post.findById(req.params.id);
-    if (post.user == req.user.id) {
+   
+    if (post && post.user == req.user.id) {
         post.remove();
+        console.log(post,"sss");
         await Comment.deleteMany({ post: req.params.id }) 
+        if(req.xhr){
+            return res.status(200).json({
+                data :{
+                    post : post 
+                },
+                message : "Deleted post successfully"
+            })
+        }
         req.flash("success","Deleted post successfully");
         return res.redirect("/");
     }

@@ -5,35 +5,51 @@
         <link rel="stylesheet" href="/css/home.css"></link>
     </head>
     <body>
+        <div class="home-container">
+            <section class="aside-1">
 
-        <div>
-            <h1> <%= title %></h1>
-           <% if(locals.user) {%>
-            <form action="/posts/create-post" id="create-post" method="post">
-                <textarea placeholder="What's on your mind.." col="30" rows="3" name="postContent" class="posts-textarea"></textarea>
-                <button type="submit">Post</button>
-            </form>
+            </section>
+            <section class="main-section">
+                <div class="posts-container">
+                    <div class="create-post-container">
 
-          <% } %>
-         </div>
-         <div>
-            <% for(post of posts) { %>
-                <%- include("_post")%>
-            <% } %>
-         </div>
-         <div class="List_of_users">
-            <h1>USER DETAILS </h1>
-            <% for(user of allusers) { %>
-                <div>
-                  
-                   <a href="/users/profile/<%=user.id%>"><%=  user.name %> </a>
-                </div>
-                <div>
-                  <a href="#">Follow</a>
+                       <% if(locals.user) {%>
+                        <form action="/posts/create-post" id="create-post" method="post">
+                            <input type="text" placeholder="What's on your mind.." name="postContent" class="posts_text" required >
+                            <button class="fnt-wght-500 fnt-18 btn" type="submit">Post</button>
+                        </form>
+                      <% } %>
+                    </div>
+                    <div class="display-post">
+                        <% for(post of posts) { %>
+                            
+                                <%- include("_post")%>
+            
+                          
+                        <% } %>
+                     </div>
                 </div>
                 
-            <% } %>
-         </div>
+            </section>
+            <section class="aside-2">
+                <div class="List_of_users">
+                    <h1 class="text-center">USER DETAILS </h1>
+                   <div class="users-details">
+                    <% for(user of allusers) { %>
+                        <div id="user-profile" >
+                           <a class="fnt-wght-500 fnt-15" href="/users/profile/<%=user.id%>"><%=  user.name %> </a>
+                        </div>
+                        <div class="social-icon">
+                          <a href="#">Follow</a>
+                          <a href="#">Message</a>
+                        </div>
+                        
+                    <% } %>
+                   </div>
+                 </div> 
+            </section>
+        </div>
+        
     </body>
     <script src="/js/home_posts.js"></script>
 </html> 

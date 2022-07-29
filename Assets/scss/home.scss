@@ -1,4 +1,152 @@
-.List_of_users a{
+
+//main conatiner which has 3 sections 
+.home-container{
+    display : flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin:20px;
+}
+//aside -1 to display
+.aside-1{
+    width:10%;
+    height: 200px;
+}
+//section to display posts and comments and other stuff
+.main-section{
+    width:60%;
+}
+//aside-2 to display friendslist
+.aside-2{
+    width:20%;
+    height: 100%;
+}
+.List_of_users{
     color: white;
     text-decoration: none;
+    // position: fixed;
+}
+.text-center {
+    text-align: center;
+}
+//main section
+.posts-container{
+    width:95%;
+    box-sizing: border-box;
+    height: auto;
+    margin: auto;
+    margin-top:20px;
+    .create-post-container{
+        width:100%;
+        height: auto;
+        form input{
+            display: block;
+            width: 85%;
+            height: 70px;
+            margin: auto;
+        }
+        button{
+            padding: 8px 25px 8px 25px;
+            background-color: rgba(184, 14, 99, 0.778);
+            color: white;
+            display: block;
+            position: relative;
+            right: 7%;
+            border: 1px solid lightgray;
+            float: right;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        button:hover{
+            background-color: rgb(83, 9, 41); 
+            cursor: pointer;   
+        } 
+    }
+    .display-post{
+        display: flex;
+        flex-direction: column;
+        width: 99%;
+        border: 1px solid black;
+        margin: auto;
+        margin-top: 20px;
+        padding: 10px;
+        .posts{
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            padding: 10px;
+           .post-content{
+            font-size: 17px;
+            font-weight: 600;
+            color: white;
+           }
+           .post-details{
+            display: flex;
+            flex-direction: row;
+           } 
+           .post-details div{
+           margin-right: 15px;
+           margin-top: 10px;
+           }
+        }
+    }
+}
+//friends list
+.users-details{
+    display: flex;
+    flex-direction: column;
+    #user-profile{
+        display: block;
+        margin: auto;
+        margin-top:10px;
+        margin-bottom: 10px;
+        a{
+           font-size: large;
+           font-weight: 500;
+           color: whitesmoke;
+           text-decoration: none; 
+           transition: 0.5s;
+        }
+        a:hover{
+            color: white;
+            cursor: pointer;
+        }
+    }
+    .social-icon{
+        display: block;
+        margin: auto;
+        margin-top:10px;
+        margin-bottom: 10px;
+        a{
+            font-size: large;
+            display: inline-block;
+            font-weight: 600;
+            padding: 10px;
+            font-weight: 500;
+            color: whitesmoke;
+            text-decoration: none; 
+            border: 1px solid rgb(166, 158, 158);
+            background-color: rgb(16, 16, 241);
+         }
+         a:hover{
+             color: white;
+             background-color: rgb(5, 5, 71);
+             cursor: pointer;
+             box-shadow: 0px 10px 10px rgb(121, 121, 158);
+         }
+    }
+}
+
+.fnt-15{
+    font-size: 15px;
+}
+.fnt-wght-500{
+    font-weight: 500;
+}
+
+.fnt-18{
+    font-size: 18px;
+}
+.fnt-wght-600{
+    font-weight: 600;
 }
