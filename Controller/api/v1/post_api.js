@@ -40,6 +40,27 @@ module.exports.destory = async function(req,res){
         })
     }
     catch(err){
+
+    }
+}
+module.exports.createpost = async function(req,res){
+    try{
+        let post = await Post.create(
+            // postContent : req.body.postContent,
+            // user : req.body.userid,
+            req.body
+        )
         
+      
+        return res.json(200,{
+            message : "Added post successfully"
+        })
+    }
+
+    catch(err){
+        console.log(err,"   hello   ",req.body)
+        return res.json("500",{
+            message : "inetrnal server error"
+        })
     }
 }
