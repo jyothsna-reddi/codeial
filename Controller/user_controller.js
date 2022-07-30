@@ -1,5 +1,7 @@
 const Post = require("../models/PostSchema");
-const User = require("../models/UserSchema")
+const User = require("../models/UserSchema");
+const fs=require("fs");
+const path = require("path");
 module.exports.users = function(req,res){
     return res.render("users");
 }
@@ -27,15 +29,49 @@ module.exports.profile  = async function(req,res){
     // })
     // })  
 }
-module.exports.update = function(req,res){
+//updtae user  profile and converting to async and await
+module.exports.update = async function(req,res){
     if(req.user.id == req.params.id) {
-        User.findByIdAndUpdate(req.params.id,{
-            name : req.body.name,
-            email : req.body.email,
-        },function(err,user){
+        //find user first 
+        let user = await User.findById(req.params.id);
+        User.uploadavtar(req,res,function(err){
+            if(err){
+                console.log("error in uploading file",err);
+            }
+            user.name = req.body.name;
+            user.email = req.body.email;
+            console.log(req.file);
+            
+            if(req.file){
+                
+                if(req.file.mimetype == ("image/jpeg")){
+                   if(user.avtar && fs.existsSync(path.join(__dirname,"..",user.avtar))){
+                      fs.unlinkSync(path.join(__dirname,"..",user.avtar));
+                    }
+                    user.avtar = User.avtar_path+"/"+req.file.filename;
+                    req.flash("success","Updated profile pics successfully");
+                    user.save();
+                    
+               }
+                 else{
+                    console.log("cannot upload image");
+                    req.flash("error","Cannot upload the file..plz select only image files");
+                 }
+                return res.redirect("back");
+            }
+            
+            
             return res.redirect("back");
         })
     }
+    // if(req.user.id == req.params.id) {
+    //     User.findByIdAndUpdate(req.params.id,{
+    //         name : req.body.name,
+    //         email : req.body.email,
+    //     },function(err,user){
+    //         return res.redirect("back");
+    //     })
+    // }
 }
 module.exports.signup = function(req,res){
     return res.render("Signup",{title : "Sign-up"});

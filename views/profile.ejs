@@ -1,27 +1,45 @@
 <head>
     <link rel="stylesheet" href="/css/signup.css">
+    <link rel="stylesheet" href="/css/profile.css">
 </head>
 <h1>
      Profile Page 
 </h1>
-<% if(locals.user && (locals.user.id == profile_user.id)) { %>  
-    <div class="form">
-        <form action="/users/update/<%=profile_user.id %>" method="post">
-            <input type="text" name = "name" value=<%= profile_user.name %> >
-            <input type="text" name = "email" value=<%= profile_user.email %> >
-            <button type="submit">Update Details</button>
-        </form>
+<div class="container">
+    <div class="div-image">
+        <img src="<%= profile_user.avtar %>" alt="profile-pic <%=user.name%>">
     </div>
-<% } else { %>
-    <div class="user-profile">
-        <div>
-            <h3> User Name :-<%= profile_user.name %> </h3>
-        </div>
-        <div>
-            <h3> Email :- <%= profile_user.email %> </h3>
-         </div>
+    <div>
+        <% if(locals.user && (locals.user.id == profile_user.id)) { %>  
+    
+            <div class="form">
+
+                <form action="/users/update/<%=profile_user.id %>" enctype="multipart/form-data" method="post">
+                   <div class="file-upload">
+                    <label>Upload Profile</label>
+                    <input type="file" name="avtar">
+                   </div>
+                    
+                    <input type="text" name = "name" value=<%= profile_user.name %> >
+                    <input type="text" name = "email" value=<%= profile_user.email %> >
+                    
+                    <button type="submit">Update Details</button>
+                </form>
+            </div>
+        <% } else { %>
+            <div class="user-profile">
+                <div>
+                    <h3> User Name :-<%= profile_user.name %> </h3>
+                </div>
+                <div>
+                    <h3> Email :- <%= profile_user.email %> </h3>
+                 </div>
+            </div>
+        <% } %>
     </div>
-<% } %>
+</div>
+
+
 <div>
     <% for(post of posts) { %>
         <div>
