@@ -12,6 +12,7 @@ const scssMiddleware = require("node-sass-middleware");
 const session = require('express-session');
 const passport = require('passport');
 const passportlocal = require("./config/passport_local_strategy");
+const passportjwt = require("./config/passport_jwt_strategy");
 //added flash for notifications
 const flash = require("connect-flash");
 //call custom middleare - flash
