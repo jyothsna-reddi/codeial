@@ -1,6 +1,45 @@
-module.exports.postlist = function(req,res){
-    return res.json(200, {
-        message : "List of posts",
-        data : [],
-    })
+//To fetch data from database (post data)
+const Post = require("../../../models/PostSchema");
+const Comment = require("../../../models/commentSchema");
+
+module.exports.postlist = async function(req,res){
+    try {
+        let posts = await Post.find({})
+        .sort("-createdAt")
+        .populate("user", "name email avtar")
+        .populate ({
+            path : "comments",
+            populate: {
+                path: 'user'
+            }
+        })
+        return res.json(200, {
+            message : "List of posts",
+            data : {
+                posts : posts,
+            }
+        })
+    }
+    catch(err){
+
+    }
+   
+    // return res.json(200, {
+    //     message : "List of posts",
+    //     data : [],
+    // })
+}
+//delete posts
+module.exports.destory = async function(req,res){
+    try{
+        let post = await Post.findById(req.params.id);
+        post.remove();
+        await Comment.deleteMany({post : req.params.id});
+        return res.json(200,{
+            message:"deleted post successfully"
+        })
+    }
+    catch(err){
+        
+    }
 }
