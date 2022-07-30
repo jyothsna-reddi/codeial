@@ -2,7 +2,7 @@ const express = require("express");
 const cookieParser = require("cookie-parser");
 const path = require("path");
 const app = express();
-const port = 8000;
+const port = 9000;
 const expressLayouts = require("express-ejs-layouts");
 const db = require("./config/mongoose");
 const MongoStore = require("connect-mongo");
@@ -76,7 +76,7 @@ app.use(custommiddleware.setflash);
 //add it in layouts
 //use express router 
 app.use('/',require("./Routes/index"));
-
+app.use('/api',require("./Routes/api/index"));
 app.listen(port,function(err){
     if(err){
         console.log("cannot connect to server");
