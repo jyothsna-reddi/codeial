@@ -11,7 +11,8 @@ passport.use(new googlestrategy({
     callbackURL : "http://localhost:8000/users/auth/google/callback",
     },
     function(accessToken,refreshToken,profile,done){
-        User.findOne({email : profile.emails[0]}).exec(function(err,user){
+        console.log(profile.emails[0].value)
+        User.findOne({email : profile.emails[0].value}).exec(function(err,user){
             if(err){
                 console.log("cannot authe user via google strategy",err);
                 return;
