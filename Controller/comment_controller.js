@@ -1,7 +1,10 @@
 const Commment = require("../models/commentSchema");
 const Post = require("../models/PostSchema");
+const User = require("../models/UserSchema");
+const comment_mailer = require("../mailer/comments_mailer/commets_mail")
 
 module.exports.createcomment  = async function(req,res){
+    console.log("controller",req.body);
    try{
         let post = await Post.findById(req.body.post);
         let comment = await Commment.create({
@@ -11,6 +14,14 @@ module.exports.createcomment  = async function(req,res){
         })
     post.comments.push(comment);
     post.save();
+    let commentwithuser = await Commment.findById(comment._id).populate("user","name email");
+    comment_mailer.newcomment(commentwithuser);
+    if(req.xhr){
+        return res.status(200).json({
+            message : "Added comment successfully",
+            data : commentwithuser,
+        })
+    }
     req.flash("success","Added comment successfully");
     return res.redirect("/");  
    }

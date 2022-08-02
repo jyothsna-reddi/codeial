@@ -12,7 +12,7 @@ passport.use(new googlestrategy({
     },
     function(accessToken,refreshToken,profile,done){
         console.log(profile.emails[0].value)
-        User.findOne({email : profile.emails[0].value}).exec(function(err,user){
+        User.findOne({email : profile.emails[0].value},(function(err,user){
             if(err){
                 console.log("cannot authe user via google strategy",err);
                 return;
@@ -26,7 +26,7 @@ passport.use(new googlestrategy({
                     email : profile.emails[0],
                     password :crypto.randomBytes(20).toString("hex"),
                     avtar : profile.photos[0],
-                }).exec(function(err,user){
+                },(function(err,user){
                     if(err){
                         console.log("cannot create user via google strategy",err);
                         return;
@@ -37,9 +37,13 @@ passport.use(new googlestrategy({
                         return done(null,false);
                     }
                 })
+                )
             }
-        })
+        }))
 
     }
 
 ))
+/* ,
+                })
+            }) */

@@ -4,6 +4,7 @@ const passport = require("passport");
 const router = express.Router();
 
 const usercontroller = require("../Controller/user_controller");
+const { route } = require("./posts");
 
 router.get("/",usercontroller.users);
 router.get("/sign-up",usercontroller.signup);
@@ -23,4 +24,5 @@ router.get("/auth/google/callback",passport.authenticate("google",{failureRedire
 //above is same as app.get("/url",function(req,res){
 //     .....  heree function we get from controller
 // })
+
 module.exports = router;

@@ -27,6 +27,7 @@ function createpost(){
                 notyflash("success",data.message)
                 //to delete post
                 deletepost($(".delete-post"),newPost);
+                createcommment($(`#post-${data.data.post_id} .new-comment-form`));
             },
             error: function (error) {
                 notyflash("error","Can not add the post")
@@ -55,7 +56,7 @@ function newpost(post) {
             <hr>
         </div>
         <div class="add-comment">
-            <form action="/comments/create-comment" method="POST">
+            <form action="/comments/create-comment" class="comment-form" method="POST">
                 <input type="text" name="commentcontent" placeholder="Add your thoughts...">
                 <input type="hidden" name="post" value=${post._id} >
                 <button type="submit">Add Comment</button>
@@ -105,3 +106,56 @@ let apply_dynamic_delete_to_existing_posts = function ()
 
 apply_dynamic_delete_to_existing_posts()
 createpost();
+//*************** Comments ajax*********************//
+function createcommment(comment_add) {
+    console.log("comments///",comment_add)
+    $(comment_add).on("submit",function(e){
+       
+         e.preventDefault();
+     
+        $.ajax({
+            method : "post",
+            data : $(comment_add).serialize(),
+            url : "/comments/create-comment",
+            success : function(data){
+                console.log(data.data);
+                var new_comment = newcomment(data.data);
+                $(".display-comments").prepend(new_comment);
+                //notify
+                notyflash("success",data.message)
+                
+            },
+            error : function(err){
+                console.log(err.responseText);
+            }
+        })
+    })
+}
+function newcomment(comment) {
+    console.log("loop",comment.commentcontent,"  ",comment.user.name,"  ",comment._id)
+    return $(`
+    <div class="comments" id="comment-${comment._id}">
+    <div>
+        ${ comment.commentcontent}
+    </div>
+    <div>
+        ${ comment.user.name}
+    </div>
+    <div class="delte-comment">
+        <a href="/comments/destroy/${comment._id}">Delete Comment</a>
+    </div>
+</div>`)
+}
+// let apply_to_all_posts = function() {
+//     $("ass")
+// }
+let apply_dynamic_addcomment_to_existing_posts = function ()
+{
+    var addcomment_post_array = $(".new-comment-form")
+    for(let comments_array of addcomment_post_array){
+        console.log("reachedd-comment");
+        createcommment(comments_array);
+    
+    }
+}
+apply_dynamic_addcomment_to_existing_posts();
