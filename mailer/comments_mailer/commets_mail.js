@@ -14,7 +14,7 @@ exports.newcomment  = (comment) =>
             console.log("eror in publishing email",err);
             return;
         }
-        console.log("mail sent successfully",info);
+       // console.log("mail sent successfully",info);
         return;
     }
     )
