@@ -1,0 +1,21 @@
+<head>
+    <link rel="stylesheet" href="/css/chat.css">
+</head>
+<% if(locals.user) {%>
+<div class="chat-container">
+    <div class="chat-body">
+        <div class="frndsmsg">
+            <span>Friends message</span>
+        </div>
+        <div class="selfmsg">
+            <span>Your message</span>
+        </div>
+    </div>
+    <div class="chat-footer">
+        <form>
+            <input type="text" placeholder="Type message here..">
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</div>
+<% } %>

@@ -1,4 +1,5 @@
 <div class="posts" id="post-<%=post.id%>">
+  <% let i %>
   <div>
       <div class="post-content">
         <%= post.user.name %>
@@ -6,11 +7,35 @@
         <% if(locals.user && post.user.name == user.name)  {%>
           <div class="delete-posts">
            <a class="delete-post" href="/posts/destroy/<%=post._id%>">Delete Post</a>
-          </div>
+            </div>
           <% } %>
     </div>
     <div class="post-details">
         <%= post.createdAt %>
+        <div class="togglelike-post">
+          <a class="togglelike-post-a" style="color: red;text-decoration: none;" href="/likes/toggle/?type=Post&id=<%=post._id%>">
+            <% if(locals.user){  %>
+              <% for(likeduser of post.likes){ %>
+                <% if(locals.user.id == likeduser.user.id){ %>
+                    <p style="display: none;" class="if"><%= i="if"%></p>
+                  <% break %> 
+                <% } else {%> 
+                  <p style="display: none;"class="else"><%= i="else"%></p>
+                   <% } %>
+              <% } %> 
+              <% if(i=="if") {%>
+                <img class="img-like" style="width:20px;height: 20px;margin-left: 20px;text-decoration: none;"
+                 src="https://cdn-icons-png.flaticon.com/128/833/833472.png">
+              <% } else { %> 
+                <img class="img-like" style="width:20px;height: 20px;margin-left: 20px;text-decoration: none;" 
+                src="https://cdn-icons.flaticon.com/png/128/2961/premium/2961957.png?token=exp=1659535936~hmac=e0544d2f43eb85968923d3254157f83f"> 
+              <% } %>
+             <% } %>
+        </a>
+        <span class="togglelike-post-span" style="color:white;text-decoration: none;margin-left: 3px; " data-likes="<%=post.likes.length%>">
+           <%=post.likes.length%> </span>&nbsp&nbsplikes
+      
+        </div>
     </div>
     <hr>
   </div>

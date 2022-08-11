@@ -4,8 +4,8 @@ let testaccount = nodemauler.createTestAccount();
 const ejs = require("ejs");
 const path = require("path")
 const transporter = nodemauler.createTransport({
-    host : "smtp.gmail.com",
-    port : 587,
+    host :'smtp.gmail.com',
+    port: 587,
     service : "gmail",
     auth : {
         user : "connector.socialmedia27@gmail.com",

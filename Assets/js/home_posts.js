@@ -153,7 +153,7 @@ let apply_dynamic_addcomment_to_existing_posts = function ()
 {
     var addcomment_post_array = $(".new-comment-form")
     for(let comments_array of addcomment_post_array){
-        console.log("reachedd-comment");
+   //     console.log("reachedd-comment");
         createcommment(comments_array);
     
     }

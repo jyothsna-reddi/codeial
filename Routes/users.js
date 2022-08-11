@@ -13,6 +13,10 @@ router.get("/profile/:id",passport.checkauthentication,usercontroller.profile);
 router.post("/create",usercontroller.createUser);
 router.get("/sign-out",usercontroller.destroysession);
 router.post("/update/:id",usercontroller.update);
+router.get("/forgot-password",usercontroller.forgotpassword);
+router.post("/reset-password",usercontroller.resetpassword);
+router.get("/resetpassword/:token",usercontroller.resetmail)
+router.post("/passwordcheck",usercontroller.passwordcheck);
 router.post("/create-session",passport.authenticate(
     "local",
     {failureRedirect : "/users/sign-up"},

@@ -1,7 +1,12 @@
 const Post = require("../models/PostSchema");
 const User = require("../models/UserSchema");
+const Reset = require("../models/reset_passwordSchema");
+const reset_mailer = require("../mailer/reset/reset_email.js");
+const crypto = require("crypto");
 const fs=require("fs");
 const path = require("path");
+const { Cipher } = require("crypto");
+const { reset } = require("nodemon");
 module.exports.users = function(req,res){
     return res.render("users");
 }
@@ -112,4 +117,59 @@ module.exports.destroysession = function(req,res){
     });
     
 }
+module.exports.forgotpassword = function(req,res){
+    return res.render("forgotpassword",{
+        title : "Forgot Password",
+    })
+}
+module.exports.resetpassword = async function(req,res){
+    try{
+        let user = await User.findOne({email:req.body.email});
+       
+    if(user){
+        let reset = await Reset.create({
+            user : user,
+            accesstoken : crypto.randomBytes(20).toString("hex"),
+            isvalid : true,
+        })
+        let resetwithuser = await Reset.findById(reset._id).populate("user");
+        console.log("user",resetwithuser.user);
+        req.flash("Success","Email sent successfully");
+        reset_mailer.reset(resetwithuser);
+        
+        console.log("email sent successfully to reset the password");
+        return res.redirect("back");;
+    }
+    return res.redirect("back");
+    }
+    catch(err){
+        console.log("error",err);
+        return;
+    }
+}
+module.exports.resetmail = async function(req,res){
+    let reset_password =await Reset.findOne({accesstoken : req.params.token})
+    
 
+    return res.render("reset",{
+        title : "Reset Password",
+        reset : reset_password,
+    });
+}
+module.exports.passwordcheck = async function(req,res){
+    let reset_password =await Reset.findOne({accesstoken : req.body.token})
+    
+    if(req.body.password != req.body.confirm_password){
+        console.log("password mismatch");
+        req.flash("error","Password is not matching");
+        return res.redirect("back");
+    }
+    let user = await User.findById(reset_password.user);
+    reset_password.isvalid = false;
+    user.password = req.body.password;
+    user.save();
+    reset_password.save();
+    console.log(reset_password.isvalid,user.password);
+    req.flash("success","Password has reset");
+    return res.redirect('/users/sign-in');
+}

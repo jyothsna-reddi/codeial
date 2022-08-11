@@ -1,0 +1,22 @@
+
+
+<div>
+<div>
+    Hi <%= reset.user.name %>,
+    <br/>
+    <br/>
+</div>
+<div>
+    <span>We are sorry to hear that you're having trouble logging into Connector. 
+        We got message that you have forgot your password.If it was you, you can 
+        get right back into your account or reset your password now
+    </span>
+    <div>
+        <a href="http://localhost:8000/users/resetpassword/<%=reset.accesstoken %>">
+            Reset your Password
+        </a>
+    </div>
+    
+
+</div>
+</div>

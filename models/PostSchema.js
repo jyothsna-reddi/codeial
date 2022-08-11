@@ -14,7 +14,13 @@ const mongoose = require("mongoose");
             type:  mongoose.Schema.Types.ObjectId,
             ref: 'Comment'
         }
-    ]
+    ],
+    likes : [
+        {
+            type:  mongoose.Schema.Types.ObjectId,
+            ref: 'Like'
+        }
+    ],
  },{timestamps : true});
  const Post = mongoose.model("Post",Postschema);
  module.exports = Post;

@@ -1,0 +1,21 @@
+<head>
+    <link rel="stylesheet" href="/css/Forgotpassword.css">
+</head>
+<div class="container">
+    <h1 class="heading">Reset Password </h1>
+    <div class="forgot-form">
+        <% if( reset.isvalid == true){ %>
+        <form action="/users/passwordcheck" method="POST">
+            <input type="text" placeholder="New password" autocomplete="off" name="password">
+            <input type="text" placeholder="Confirm password" autocomplete="off"  name="confirm_password">
+            <input type="hidden" value="<%= reset.accesstoken %>" name="token"> 
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <% } else { %>
+    <div>
+        <span>Your session has expired to reset password !!</span>
+    
+    </div>
+    <% } %>
+</div>

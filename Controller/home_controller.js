@@ -12,12 +12,22 @@ module.exports.home = async function(req,res){
             path: 'comments',
             populate: {
                 path: 'user'
+            },
+            populate: {
+                path: 'likes',
+                populate: {
+                    path: 'user'
+                },
             }
-    })
+         })
+         .populate({
+            path: 'likes',
+            populate : ("user")
+         })
     let user =  await User.find({});
     return res.render('home', {
         title: "Codeial | Home",
-        posts:  posts,
+        posts: posts,
         allusers : user,
     });
     }
@@ -26,3 +36,4 @@ module.exports.home = async function(req,res){
         return;
     }
 }
+
