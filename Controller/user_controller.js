@@ -1,5 +1,6 @@
 const Post = require("../models/PostSchema");
 const User = require("../models/UserSchema");
+const Friend = require("../models/friendship")
 const Reset = require("../models/reset_passwordSchema");
 const reset_mailer = require("../mailer/reset/reset_email.js");
 const crypto = require("crypto");
@@ -172,4 +173,55 @@ module.exports.passwordcheck = async function(req,res){
     console.log(reset_password.isvalid,user.password);
     req.flash("success","Password has reset");
     return res.redirect('/users/sign-in');
+}
+module.exports.makefriendship = async function(req,res){
+    if(req.user){
+        let addedfriend = false;
+    let friend_exists = await Friend.findOne({
+        userid:req.user._id,
+        friendid : req.query.id,
+    })
+    let user = await User.findById(req.user._id);
+    let userfriend = await User.findById(req.query.id);
+    
+    if(friend_exists !=null){
+      user.friendship.pull(req.query.id);
+      userfriend.friendship.pull(req.user._id)
+      friend_exists.remove();
+      addedfriend = false;
+    }
+    else{
+        let friend = await Friend.create({
+            userid:req.user._id,
+            friendid :req.query.id
+        })
+        user.friendship.push(req.query.id);
+        console.log("198",userfriend.friendship.push(req.user._id));
+        addedfriend = true;
+    }
+    console.log("184",userfriend)
+    user.save();
+    userfriend.save();
+    if(req.xhr){
+        if(addedfriend){
+            return res.status(200).json({
+                data : {
+                    added : addedfriend,
+                    message : "Added friend successfully"
+                },
+            })
+        }
+        else{
+            return res.status(200).json({
+                data : {
+                    added : addedfriend,
+                    message : "Removed friend successfully"
+                },
+            })
+           
+        }
+    }
+
+    }
+    return res.redirect('/');
 }

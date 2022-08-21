@@ -44,14 +44,15 @@
 <div class="add-comment">
  <% if(locals.user)  {%>
      <form action="/comments/create-comment" class="new-comment-form" method="POST">
-         <input type="text" id="comment_content" name="commentcontent" placeholder="Add your thoughts...">
+         <input type="text" id="comment_content" name="commentcontent" class="comment-text"placeholder="Add your thoughts...">
          <input type="hidden" id="post_id" name="post" value=<%= post._id %> >
          <button type="submit" class="comment-submit">Add Comment</button>
      </form>
  <% } %>
 </div>
-<div class="display-comments">
+<div class="display-comments"  id="post-comments-<%=post._id%>">
 <% for( comment of post.comments){ %>
+  
      <%- include("_comment") %>
  <% } %>
 </div>

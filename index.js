@@ -56,14 +56,7 @@ app.use(session({
     cookie: {
         maxAge: (1000 * 60 * 100)
     },
-    store: MongoStore.create({
-        //options)
-    // store : new MongoStore({
-       mongoUrl : "mongodb://0.0.0.0:27017/social_media",
-        autoremove : "disabled",
-    },function(err){
-        console.log("error at mongo store",err || "connection established to store cookie");
-    })
+    
 }));
 //passport initialize 
 app.use(passport.initialize());

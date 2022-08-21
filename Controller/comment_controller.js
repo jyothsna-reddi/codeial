@@ -36,7 +36,10 @@ module.exports.createcomment  = async function(req,res){
     if(req.xhr){
         return res.status(200).json({
             message : "Added comment successfully",
-            data : commentwithuser,
+            data :{
+                comment :commentwithuser,
+                post_id : req.body.post,
+            } 
         })
     }
     req.flash("success","Added comment successfully");
@@ -74,16 +77,21 @@ module.exports.destroy = async function(req,res){
     try{
         let comment = await Commment.findById(req.params.id);
         let post = await Post.findById(comment.post);
-            if(comment.user == req.user.id || post.user == req.user.id){
-                var comment_post_id =comment.post;
-                comment.remove();
-                let posts_update = await Post.findByIdAndUpdate(comment_post_id, {$pull : {comments : req.params.id}});
+        if(comment.user == req.user.id || post.user == req.user.id){
+            var comment_post_id =comment.post;
+            comment.remove();
+            let posts_update = await Post.findByIdAndUpdate(comment_post_id, {$pull : {comments : req.params.id}});
+            if(req.xhr){
+                return res.status(200).json({
+                    data : {
+                        comment : comment
+                    },
+                    message : "Delete comment successfully",
+                })
             }
-            else{
-                return res.redirect("back");  ;
-            }
-            req.flash("success","Delete comment successfully");
-            return res.redirect("back");  
+        }
+        req.flash("success","Delete comment successfully");
+        return res.redirect("back");  
     }
     catch(err){
         console.log(err);

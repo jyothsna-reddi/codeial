@@ -17,6 +17,8 @@ router.get("/forgot-password",usercontroller.forgotpassword);
 router.post("/reset-password",usercontroller.resetpassword);
 router.get("/resetpassword/:token",usercontroller.resetmail)
 router.post("/passwordcheck",usercontroller.passwordcheck);
+router.get("/makefriendship",usercontroller.makefriendship);
+router.get("/removefriendship",usercontroller.makefriendship);
 router.post("/create-session",passport.authenticate(
     "local",
     {failureRedirect : "/users/sign-up"},

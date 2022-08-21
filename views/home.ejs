@@ -35,15 +35,29 @@
                 <div class="List_of_users">
                     <h1 class="text-center">USER DETAILS </h1>
                    <div class="users-details">
-                    <% for(user of allusers) { %>
+                    <% for(users of allusers) { %>
+                        <% var i=false; %>
                         <div id="user-profile" >
-                           <a class="fnt-wght-500 fnt-15" href="/users/profile/<%=user.id%>"><%=  user.name %> </a>
+                           <a class="fnt-wght-500 fnt-15" href="/users/profile/<%=users.id%>"><%=  users.name %> </a>
                         </div>
-                        <div class="social-icon">
-                          <a href="#">Follow</a>
-                          <a href="#">Message</a>
-                        </div>
-                        
+                        <% if(locals.user ) { %>
+                            <% for(friendship of users.friendship) { %>
+                            <% if(friendship._id == locals.user.id){ %>
+                                <% i=true; %>
+                                <% break %> 
+                                <% } else { %>
+                                    <% i=false; %>
+                                <% } %>
+                            <% } %>
+                            <div class="social-icon">
+                                <% if(i){ %>
+                                    <a class="frnd-a-tag" href="/users/makefriendship/?type=follow&id=<%=users.id%>">Unfollow</a>
+                               <% } else { %> 
+                                    <a class="frnd-a-tag" href="/users/makefriendship/?type=follow&id=<%=users.id%>">Follow</a>
+                                <% } %> 
+                                <a href="#">Message</a>
+                                </div>
+                        <% } %>
                     <% } %>
                    </div>
                  </div> 
@@ -53,4 +67,6 @@
     </body>
     <script src="/js/home_posts.js"></script>
     <script src="/js/likejs.js"></script>
+    <script src="/js/comment_ajax.js"></script>
+    <script src="/js/friendship_ajax.js"></script>
 </html> 

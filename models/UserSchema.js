@@ -21,7 +21,13 @@ const user = mongoose.Schema({
     },
     avtar : {
         type : String,
-    }
+    },
+    friendship: [
+        {
+            type:  mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ],
 },{timestamps : true})
 
 //to define storgare
