@@ -19,7 +19,19 @@ const flash = require("connect-flash");
 //call custom middleare - flash
 const custommiddleware = require("./config/middleware");
 
-//SCSS Setup
+/* socket.io for messaging. Setting up the chat server to be used with socket.io */
+const chatServer = require('http').Server(app);
+const chatSockets = require("./config/chat_socket").chatSockets(chatServer);
+
+
+/* chat server */
+chatServer.listen(5000);
+console.log('Chat Server is listening on port 5000');
+
+
+
+
+//SCSS Setup 
 app.use(scssMiddleware ({
     src : "./Assets/scss",
     dest : "./Assets/css",

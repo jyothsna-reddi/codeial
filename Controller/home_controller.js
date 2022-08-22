@@ -29,7 +29,7 @@ module.exports.home = async function(req,res){
         .populate({
         path : "friendship",
     });
-     console.log("34",user)
+    // console.log("34",user)
     return res.render('home', {
         title: "Codeial | Home",
         posts: posts,

@@ -2,19 +2,19 @@
     <link rel="stylesheet" href="/css/chat.css">
 </head>
 <% if(locals.user) {%>
-<div class="chat-container">
-    <div class="chat-body">
-        <div class="frndsmsg">
+<div id="chat-container">
+    <div id="chat-body">
+        <div class="others-msg">
             <span>Friends message</span>
         </div>
-        <div class="selfmsg">
+        <div class="self-msg">
             <span>Your message</span>
         </div>
     </div>
-    <div class="chat-footer">
+    <div id="chat-footer">
         <form>
-            <input type="text" placeholder="Type message here..">
-            <button type="submit">Send</button>
+            <input id="send-msg-input" type="text" placeholder="Type message here..">
+            <button id="send-message" type="submit">Send</button>
         </form>
     </div>
 </div>

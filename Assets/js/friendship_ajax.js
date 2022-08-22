@@ -12,7 +12,7 @@ function craetefriendship(friend) {
                         $(friend).html("Unfollow");
                     }
                     else{
-                        console.log(data.data, $(friend).html());
+                       // console.log(data.data, $(friend).html());
                         $(friend).html("Follow");
                     }
                 },

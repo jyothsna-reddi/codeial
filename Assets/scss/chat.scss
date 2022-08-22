@@ -1,4 +1,4 @@
-.chat-container {
+#chat-container {
     display: flex;
     flex-direction: column;
     width: 15%;
@@ -12,23 +12,23 @@
     
     justify-content: space-between;
 }
-.chat-body{
+#chat-body{
     height: 80%;
     padding: 3px;
 }
-.frndsmsg{
+.others-msg{
  margin-top: 10px;
  background-color: violet;
  padding: 10px;
  float: left;
 }
-.selfmsg{
+.self-msg{
     margin-top: 20px;
     float: right;
     padding: 10px;
     background-color: cyan;
 }
-.chat-footer{
+#chat-footer{
     height:10%;
     border: 1px solid black;
     input {

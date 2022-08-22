@@ -170,7 +170,7 @@ module.exports.passwordcheck = async function(req,res){
     user.password = req.body.password;
     user.save();
     reset_password.save();
-    console.log(reset_password.isvalid,user.password);
+    //console.log(reset_password.isvalid,user.password);
     req.flash("success","Password has reset");
     return res.redirect('/users/sign-in');
 }
@@ -196,10 +196,10 @@ module.exports.makefriendship = async function(req,res){
             friendid :req.query.id
         })
         user.friendship.push(req.query.id);
-        console.log("198",userfriend.friendship.push(req.user._id));
+       // console.log("198",userfriend.friendship.push(req.user._id));
         addedfriend = true;
     }
-    console.log("184",userfriend)
+   // console.log("184",userfriend)
     user.save();
     userfriend.save();
     if(req.xhr){
