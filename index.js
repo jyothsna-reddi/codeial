@@ -1,5 +1,6 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+const env = require("./config/environment")
 const path = require("path");
 const app = express();
 const port = 8000;
@@ -32,9 +33,10 @@ console.log('Chat Server is listening on port 5000');
 
 
 //SCSS Setup 
+// cahnged from "./Assets/scss" to path.join after adding env file
 app.use(scssMiddleware ({
-    src : "./Assets/scss",
-    dest : "./Assets/css",
+    src : path.join(__dirname,env.assetpath,"scss"),
+    dest : path.join(__dirname,env.assetpath,"css"),
     debug : false,
     prefix :"/css",
     outputStyle : "expanded",
@@ -43,8 +45,8 @@ app.use(scssMiddleware ({
 app.use(express.urlencoded());
 
 app.use(cookieParser());
-
-app.use(express.static('./assets'));
+//changed ./assets to env.assetpath
+app.use(express.static(env.assetpath));
 app.use("/uploads",express.static(__dirname+"/uploads"))
 
 app.use(expressLayouts);//this  is for layouts...place before route
@@ -62,7 +64,7 @@ app.set("views","./views");
 app.use(session({
     name: 'codeial',
     // TODO change the secret before deployment in production mode
-    secret: 'blahsomething',
+    secret: env.session_key,
     saveUninitialized: false,
     resave: false,
     cookie: {

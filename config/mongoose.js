@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-
-mongoose.connect("mongodb://0.0.0.0:27017/social_media");
+const env = require("../config/environment")
+mongoose.connect(`mongodb://0.0.0.0:27017/${env.dbname}`);
 
 const db = mongoose.connection;
 

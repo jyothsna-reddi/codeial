@@ -1,17 +1,10 @@
 const { SchemaType } = require("mongoose");
 const nodemauler = require("nodemailer");
 let testaccount = nodemauler.createTestAccount();
+const env = require("../config/environment")
 const ejs = require("ejs");
 const path = require("path")
-const transporter = nodemauler.createTransport({
-    host :'smtp.gmail.com',
-    port: 587,
-    service : "gmail",
-    auth : {
-        user : "connector.socialmedia27@gmail.com",
-        pass : "rgbkympjuguluqpw"
-    }
-})
+const transporter = nodemauler.createTransport(env.smtp)
 
   // send mail with defined transport object
   let renderTemplate = function(data,relativepath) {
