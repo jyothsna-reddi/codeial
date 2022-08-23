@@ -1,0 +1,7 @@
+.Footer-container p {
+  text-align: center;
+  color: transparent;
+  display: block;
+  position: absolute;
+  bottom: 0;
+}

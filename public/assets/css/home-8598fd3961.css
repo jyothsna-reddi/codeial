@@ -1,0 +1,168 @@
+.home-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin: 20px;
+}
+
+.aside-1 {
+  width: 10%;
+  height: 200px;
+}
+
+.main-section {
+  width: 60%;
+}
+
+.aside-2 {
+  width: 20%;
+  height: 100%;
+}
+
+.List_of_users {
+  color: white;
+  text-decoration: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.posts-container {
+  width: 95%;
+  box-sizing: border-box;
+  height: auto;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.posts-container .create-post-container {
+  width: 100%;
+  height: auto;
+}
+
+.posts-container .create-post-container form input {
+  display: block;
+  width: 85%;
+  height: 70px;
+  margin: auto;
+}
+
+.posts-container .create-post-container button {
+  padding: 8px 25px 8px 25px;
+  background-color: rgba(184, 14, 99, 0.778);
+  color: white;
+  display: block;
+  position: relative;
+  right: 7%;
+  border: 1px solid lightgray;
+  float: right;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.posts-container .create-post-container button:hover {
+  background-color: #530929;
+  cursor: pointer;
+}
+
+.posts-container .display-post {
+  display: flex;
+  flex-direction: column;
+  width: 99%;
+  border: 1px solid black;
+  margin: auto;
+  margin-top: 20px;
+  padding: 10px;
+}
+
+.posts-container .display-post .posts {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+  padding: 10px;
+}
+
+.posts-container .display-post .posts .post-content {
+  font-size: 17px;
+  font-weight: 600;
+  color: white;
+}
+
+.posts-container .display-post .posts .post-details {
+  display: flex;
+  flex-direction: row;
+}
+
+.posts-container .display-post .posts .post-details div {
+  margin-right: 15px;
+  margin-top: 10px;
+}
+
+.users-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.users-details #user-profile {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.users-details #user-profile a {
+  font-size: large;
+  font-weight: 500;
+  color: whitesmoke;
+  text-decoration: none;
+  transition: 0.5s;
+}
+
+.users-details #user-profile a:hover {
+  color: white;
+  cursor: pointer;
+}
+
+.users-details .social-icon {
+  display: block;
+  margin: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.users-details .social-icon a {
+  font-size: large;
+  display: inline-block;
+  font-weight: 600;
+  padding: 10px;
+  font-weight: 500;
+  color: whitesmoke;
+  text-decoration: none;
+  border: 1px solid #a69e9e;
+  background-color: #1010f1;
+}
+
+.users-details .social-icon a:hover {
+  color: white;
+  background-color: #050547;
+  cursor: pointer;
+  box-shadow: 0px 10px 10px #79799e;
+}
+
+.fnt-15 {
+  font-size: 15px;
+}
+
+.fnt-wght-500 {
+  font-weight: 500;
+}
+
+.fnt-18 {
+  font-size: 18px;
+}
+
+.fnt-wght-600 {
+  font-weight: 600;
+}

@@ -1,0 +1,60 @@
+.container {
+  width: 70%;
+  margin: auto;
+}
+
+.div-image {
+  width: 180px;
+  height: 150px;
+  margin: auto;
+  margin-left: 40%;
+  border-radius: 50%;
+  box-shadow: 0px 10px 10px grey;
+}
+
+.div-image img {
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+}
+
+label {
+  position: absolute;
+  display: block;
+  margin-left: 32%;
+  top: 0px;
+  padding: 10px;
+  border: 1px solid lightgray;
+  color: white;
+  border-radius: 6px;
+  font-weight: 600px;
+  background-color: forestgreen;
+}
+
+label:hover {
+  background-color: green;
+  transition: 0.5s;
+}
+
+.file-upload {
+  position: relative;
+  height: 30px;
+  margin: auto;
+}
+
+input[type="file"] {
+  position: absolute;
+  top: -10;
+  left: 100;
+  opacity: 0;
+}
+
+.user-profile {
+  width: 50%;
+  margin: auto;
+  margin-top: 10px;
+}
+
+.user-profile h3 {
+  text-align: center;
+}

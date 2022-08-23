@@ -1,0 +1,42 @@
+body {
+  margin: 0px;
+  background-color: #0866b9;
+}
+
+.form {
+  font-size: 15px;
+  color: lightslategray;
+  width: 40%;
+  margin: auto;
+  margin-top: 20px;
+}
+
+form input {
+  display: block;
+  height: 40px;
+  width: 90%;
+  margin: 20px;
+  border-radius: 5px;
+  border: 0px;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+}
+
+button {
+  color: white;
+  background-color: blue;
+  padding: 10px;
+  margin: auto;
+  font-size: 15px;
+  font-weight: 600;
+  border: 0px;
+  border-radius: 4px;
+  display: block;
+}
+
+p a {
+  color: white;
+}

@@ -1,0 +1,12 @@
+body {
+  background-image: url("https://c4.wallpaperflare.com/wallpaper/644/305/118/pattern-black-gradient-texture-wallpaper-thumb.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  color: white;
+  margin: 0px;
+}
+
+body #main-body {
+  height: auto;
+}

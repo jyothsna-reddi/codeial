@@ -36,7 +36,7 @@ const development = {
 }
 const production = {
     name : "production",
-    assetpath : "./assets",//process.env.CONNECTOR_ASSET_PATH
+    assetpath : "./public/assets",//process.env.CONNECTOR_ASSET_PATH
     session_key :process.env.CONNECTOR_SESSION_KEY,
     dbname : process.env.CONNECTOR_DBNAME,
     smtp : {
@@ -57,4 +57,4 @@ const production = {
         options:{stream:accessLogStream}
     }
 }
-module.exports = development;
+module.exports = production;

@@ -1,0 +1,61 @@
+ul {
+  list-style-type: none;
+  margin: 0;
+  /* position: fixed;
+      top:0px; */
+  box-shadow: 0px 0px 15px black;
+  padding: 0;
+  overflow: hidden;
+  background-color: #afb7b0;
+}
+
+ul .float-left {
+  float: left;
+}
+
+ul .float-left img {
+  height: 50px;
+  width: 50px;
+  margin: auto;
+  color: red;
+  border-radius: 50px;
+}
+
+ul .float-left a {
+  display: inline-block;
+}
+
+ul .float-left a:hover {
+  background-color: #afb7b0;
+  color: inherit;
+}
+
+ul li {
+  float: right;
+}
+
+ul li a {
+  text-decoration: none;
+  padding: 17px;
+  margin: auto;
+  display: block;
+  font-size: 17px;
+}
+
+ul li .sign-profile:hover {
+  background-color: #111;
+  color: white;
+}
+
+ul li .icon i {
+  color: #590158;
+  border-radius: 4px;
+}
+
+ul li .icon i:hover {
+  box-shadow: 0px 10px 10px #787078;
+}
+
+ul .a-img a {
+  padding: 0px;
+}
