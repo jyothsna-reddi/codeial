@@ -1,0 +1,4 @@
+::1 - - [23/Aug/2022:09:08:57 +0000] "GET /users/profile/63043cfef97abcff8ed51208 HTTP/1.1" 302 72 "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36"
+::1 - - [23/Aug/2022:09:08:57 +0000] "GET /users/sign-in HTTP/1.1" 304 - "http://localhost:8000/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/104.0.0.0 Safari/537.36"
+[0mPOST /users/create-session [36m302[0m 179.677 ms - 46[0m
+[0mGET / [32m200[0m 877.343 ms - 10908[0m

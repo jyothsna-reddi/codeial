@@ -1,6 +1,8 @@
 const express = require("express");
 const cookieParser = require("cookie-parser");
+
 const env = require("./config/environment")
+const logger = require("morgan");
 const path = require("path");
 const app = express();
 const port = 8000;
@@ -34,13 +36,15 @@ console.log('Chat Server is listening on port 5000');
 
 //SCSS Setup 
 // cahnged from "./Assets/scss" to path.join after adding env file
-app.use(scssMiddleware ({
-    src : path.join(__dirname,env.assetpath,"scss"),
-    dest : path.join(__dirname,env.assetpath,"css"),
-    debug : false,
-    prefix :"/css",
-    outputStyle : "expanded",
-}))
+if(env.name == "development" ){
+    app.use(scssMiddleware ({
+        src : path.join(__dirname,env.assetpath,"scss"),
+        dest : path.join(__dirname,env.assetpath,"css"),
+        debug : false,
+        prefix :"/css",
+        outputStyle : "expanded",
+    }))
+}
 
 app.use(express.urlencoded());
 
@@ -82,6 +86,9 @@ app.use(passport.setAuthenticatedUser)
 app.use(flash());
 //call middleware to set flash
 app.use(custommiddleware.setflash);
+
+/* logger */
+app.use(logger(env.morgan.mode, env.morgan.options))
 //add it in layouts
 //use express router 
 app.use('/',require("./Routes/index"));
@@ -92,7 +99,7 @@ app.listen(port,function(err){
     }
     else{
         console.log(`Connect to server on port:${port}`);
-       console.log("hello",process.env)
+       //console.log("hello",process.env)
 
     }
 })
