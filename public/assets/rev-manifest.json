@@ -14,5 +14,12 @@
   "friendship_ajax.js": "friendship_ajax-dbe80ff8f1.js",
   "home_posts.js": "home_posts-6506fb39ad.js",
   "likejs.js": "likejs-cde15dfb89.js",
-  "user.js": "user-77f6a50e98.js" 
+  "user.js": "user-77f6a50e98.js",
+  "js/Layout.js": "js/Layout-9164e541a3.js",
+  "js/chatengine.js": "js/chatengine-dd8d7123fa.js",
+  "js/comment_ajax.js": "js/comment_ajax-5c2206cc17.js",
+  "js/friendship_ajax.js": "js/friendship_ajax-dbe80ff8f1.js",
+  "js/home_posts.js": "js/home_posts-6506fb39ad.js",
+  "js/likejs.js": "js/likejs-cde15dfb89.js",
+  "js/user.js": "js/user-77f6a50e98.js"
 }

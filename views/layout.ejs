@@ -2,9 +2,9 @@
     <head>
         <title>Codeial || <%= title %></title>
         <link href="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="/css/Layout.css">
-        <link rel="stylesheet" href="/css/header.css">
-        <link rel="stylesheet" href="/css/footer.css">
+        <link rel="stylesheet" href="<%= assetPath('css/Layout.css') %>">
+        <link rel="stylesheet" href="<%= assetPath('css/header.css') %>">
+        <link rel="stylesheet" href="<%= assetPath('css/footer.css') %>">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/noty/3.1.4/noty.min.js" type="text/javascript"></script>
@@ -19,7 +19,7 @@
        </main>
        
         <%- include('_footer') %>
-        <script src="/js/Layout.js"></script>
+        <script src="<%= assetPath('js/Layout.js')  %>"></script>
         <%- script %>
     </body>
     

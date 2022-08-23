@@ -2,7 +2,7 @@
 <html>
     <head>
         <title>Codeial || <%=title %></title>
-        <link rel="stylesheet" href="/css/home.css"></link>
+        <link rel="stylesheet" href="<%= assetPath('css/home.css') %>"></link>
     </head>
     <body>
         <div class="home-container">
@@ -65,12 +65,12 @@
         </div>
         
     </body>
-    <script src="/js/home_posts.js"></script>
-    <script src="/js/likejs.js"></script>
-    <script src="/js/comment_ajax.js"></script>
-    <script src="/js/friendship_ajax.js"></script>
+    <script src="<%= assetPath('js/home_posts.js') %>"></script>
+    <script src="<%= assetPath('js/likejs.js') %>"></script>
+    <script src="<%= assetPath('js/comment_ajax.js') %>"></script>
+    <script src="<%= assetPath('js/friendship_ajax.js') %>"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.min.js"></script>
-    <script src="/js/chatengine.js"></script>
+    <script src="<%= assetPath('js/chatengine.js') %>"></script>
    <% if(locals.user) { %>
     <script>
         new chatEngine("chat-container","<%= locals.user.email %>")

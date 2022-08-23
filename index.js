@@ -5,6 +5,7 @@ const env = require("./config/environment")
 const logger = require("morgan");
 const path = require("path");
 const app = express();
+require('./config/view_helper')(app);
 const port = 8000;
 const expressLayouts = require("express-ejs-layouts");
 const db = require("./config/mongoose");
