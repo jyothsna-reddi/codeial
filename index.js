@@ -92,6 +92,8 @@ app.listen(port,function(err){
     }
     else{
         console.log(`Connect to server on port:${port}`);
+       console.log("hello",process.env)
+
     }
 })
 
